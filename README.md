@@ -22,7 +22,11 @@ This starts MySQL, the Laravel API, and the React frontend.
   - Email: `admin@ecommerce.com`
   - Password: `password`
 
-The backend runs migrations and seeders automatically on container startup. For Coolify, point the public route at the `frontend` service on port `80`; the frontend proxies `/api` and `/storage` to the Laravel container over the Docker network.
+The backend runs migrations and seeders automatically on container startup.
+
+The main `docker-compose.yml` is intended for Coolify and only exposes container ports inside the Docker network. The committed `docker-compose.override.yml` is picked up automatically by local Docker Compose and publishes the frontend on `5173` and backend on `8000` for development.
+
+For Coolify, assign the public domain only to the `frontend` service. The frontend listens on container port `80`, so no host port mapping is needed; it proxies `/api` and `/storage` to the Laravel container over the Docker network. Leave the `backend` service private unless you explicitly want a separate API domain.
 
 ### 1. Base de données
 Créez une base MySQL nommée `ecommerce_db`.
