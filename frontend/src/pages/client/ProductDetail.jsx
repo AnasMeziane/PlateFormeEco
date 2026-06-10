@@ -2,10 +2,9 @@ import { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import API from '../../api/axios';
+import { STORAGE_BASE_URL } from '../../api/baseUrl';
 import { ChevronLeft, MessageCircle, Package, Star, Tag } from 'lucide-react';
 import ProductCard from '../../components/ProductCard';
-
-const STORAGE_URL = 'http://localhost:8000/storage/';
 
 export default function ProductDetail() {
   const { t, i18n } = useTranslation();
@@ -48,7 +47,7 @@ export default function ProductDetail() {
 
   const images = product.images || [];
   const currentImage = images[selectedImage];
-  const imageUrl = currentImage ? STORAGE_URL + currentImage.image_url : null;
+  const imageUrl = currentImage ? STORAGE_BASE_URL + currentImage.image_url : null;
 
   const handleBooking = () => {
     navigate('/order', { state: { product } });
@@ -76,7 +75,7 @@ export default function ProductDetail() {
                     selectedImage === i ? 'border-primary-500' : 'border-transparent'
                   }`}
                 >
-                  <img src={STORAGE_URL + img.image_url} alt="" className="w-full h-full object-cover" />
+                  <img src={STORAGE_BASE_URL + img.image_url} alt="" className="w-full h-full object-cover" />
                 </button>
               ))}
             </div>

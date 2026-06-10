@@ -3,8 +3,6 @@ import API from '../../api/axios';
 import toast from 'react-hot-toast';
 import { Plus, Pencil, Trash2, X, FolderTree } from 'lucide-react';
 
-const STORAGE_URL = 'http://localhost:8000/storage/';
-
 export default function Categories() {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);

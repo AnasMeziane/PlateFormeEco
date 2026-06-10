@@ -3,11 +3,10 @@ import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useCart } from '../../context/CartContext';
 import API from '../../api/axios';
+import { STORAGE_BASE_URL } from '../../api/baseUrl';
 import toast from 'react-hot-toast';
 import { MessageCircle, User, Phone, MapPin, Home, ChevronLeft, Package, Trash2 } from 'lucide-react';
 import { useSiteSettings } from '../../hooks/useSiteSettings';
-
-const STORAGE_URL = 'http://localhost:8000/storage/';
 
 export default function WhatsAppOrder() {
   const { t } = useTranslation();
@@ -128,7 +127,7 @@ export default function WhatsAppOrder() {
           return (
             <div key={product.id} className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
               {productImage ? (
-                <img src={STORAGE_URL + productImage.image_url} alt={product.name} className="w-16 h-16 object-cover rounded-lg shrink-0" />
+                <img src={STORAGE_BASE_URL + productImage.image_url} alt={product.name} className="w-16 h-16 object-cover rounded-lg shrink-0" />
               ) : (
                 <div className="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center shrink-0">
                   <Package className="w-6 h-6 text-gray-400" />

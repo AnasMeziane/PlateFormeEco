@@ -1,0 +1,15 @@
+.env
+.env.backup
+.env.production
+.phpunit.cache
+auth.json
+database/database.sqlite
+node_modules
+public/build
+public/hot
+public/storage
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*
+storage/logs/*
+vendor

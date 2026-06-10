@@ -8,6 +8,22 @@
 
 ## Setup
 
+### Docker Compose
+```bash
+docker compose up --build
+```
+
+This starts MySQL, the Laravel API, and the React frontend.
+
+- Frontend: http://localhost:5173
+- API through frontend proxy: http://localhost:5173/api
+- API direct: http://localhost:8000/api
+- Admin: http://localhost:5173/admin/login
+  - Email: `admin@ecommerce.com`
+  - Password: `password`
+
+The backend runs migrations and seeders automatically on container startup. For Coolify, point the public route at the `frontend` service on port `80`; the frontend proxies `/api` and `/storage` to the Laravel container over the Docker network.
+
 ### 1. Base de données
 Créez une base MySQL nommée `ecommerce_db`.
 

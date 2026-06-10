@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { ShoppingCart, Check, ArrowUpRight } from 'lucide-react';
-
-const STORAGE_URL = 'http://localhost:8000/storage/';
+import { STORAGE_BASE_URL } from '../api/baseUrl';
 
 export default function ProductCard({ product }) {
   const { addToCart, isInCart } = useCart();
@@ -10,7 +9,7 @@ export default function ProductCard({ product }) {
 
   const mainImage = product.images?.find((img) => img.is_main) || product.images?.[0];
   const imageUrl = mainImage
-    ? STORAGE_URL + mainImage.image_url
+    ? STORAGE_BASE_URL + mainImage.image_url
     : null;
 
   return (

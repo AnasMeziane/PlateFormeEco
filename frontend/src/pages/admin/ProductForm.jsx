@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import API from '../../api/axios';
+import { STORAGE_BASE_URL } from '../../api/baseUrl';
 import toast from 'react-hot-toast';
 import { Save, ArrowLeft, Plus, X, Image } from 'lucide-react';
-
-const STORAGE_URL = 'http://localhost:8000/storage/';
 
 export default function ProductForm() {
   const { id } = useParams();
@@ -175,7 +174,7 @@ export default function ProductForm() {
                 <div className="flex flex-wrap gap-3 mb-4">
                   {existingImages.map((img) => (
                     <div key={img.id} className="relative group">
-                      <img src={STORAGE_URL + img.image_url} alt="" className="w-24 h-24 object-cover rounded-lg border" />
+                      <img src={STORAGE_BASE_URL + img.image_url} alt="" className="w-24 h-24 object-cover rounded-lg border" />
                       <button
                         type="button"
                         onClick={() => removeExistingImage(img.id)}

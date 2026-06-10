@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import API from '../../api/axios';
+import { STORAGE_BASE_URL } from '../../api/baseUrl';
 import toast from 'react-hot-toast';
 import { Plus, Pencil, Trash2, Package, Eye } from 'lucide-react';
-
-const STORAGE_URL = 'http://localhost:8000/storage/';
 
 export default function Products() {
   const [products, setProducts] = useState([]);
@@ -81,7 +80,7 @@ export default function Products() {
                       <td className="py-3 px-4">
                         <div className="flex items-center gap-3">
                           <img
-                            src={mainImg ? STORAGE_URL + mainImg.image_url : 'https://via.placeholder.com/40'}
+                            src={mainImg ? STORAGE_BASE_URL + mainImg.image_url : 'https://via.placeholder.com/40'}
                             alt=""
                             className="w-10 h-10 rounded-lg object-cover"
                           />
