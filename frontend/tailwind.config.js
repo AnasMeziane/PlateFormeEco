@@ -7,34 +7,76 @@ export default {
   theme: {
     extend: {
       colors: {
-        cream: '#F7F3ED',
-        'cream-dark': '#EDE8DF',
+        // Clean cream/white palette
+        cream: '#FAFAFA',
+        'cream-dark': '#F0F0F0',
+        // Deep Navy Blue - Professional primary color
+        navy: {
+          50:  '#E8EDF5',
+          100: '#C5D1E8',
+          200: '#9EB3D9',
+          300: '#7694CA',
+          400: '#4E75BB',
+          500: '#0F2A4A',  // Main deep navy
+          600: '#0C2240',
+          700: '#091A35',
+          800: '#06122A',
+          900: '#030A1F',
+        },
+        // Royal blue (kept for compatibility)
         royal: {
-          50:  '#EEF2FA',
-          100: '#D5DEF2',
-          200: '#ABBDE5',
-          300: '#7A96D4',
-          400: '#4A6FC0',
-          500: '#1B3A6B',
-          600: '#162F57',
-          700: '#112444',
-          800: '#0C1A31',
-          900: '#070F1E',
+          50:  '#E8EDF5',
+          100: '#C5D1E8',
+          200: '#9EB3D9',
+          300: '#7694CA',
+          400: '#4E75BB',
+          500: '#0F2A4A',
+          600: '#0C2240',
+          700: '#091A35',
+          800: '#06122A',
+          900: '#030A1F',
         },
+        // Copper/Gold metallic - Sophisticated accent
+        copper: {
+          50:  '#FDF6F0',
+          100: '#F9E8D9',
+          200: '#F3D0B3',
+          300: '#E8B58A',
+          400: '#D4956A',  // Main copper accent
+          500: '#B87A4D',
+          600: '#9A6340',
+          700: '#7C4D33',
+          800: '#5E3826',
+          900: '#40241A',
+        },
+        // Gold (kept for compatibility, mapped to copper tones)
         gold: {
-          50:  '#FFF8EC',
-          100: '#FEEECE',
-          200: '#FDD89A',
-          300: '#FBBB55',
-          400: '#F5A623',
-          500: '#E8920A',
-          600: '#C47506',
-          700: '#9A5B05',
-          800: '#714204',
-          900: '#4A2B02',
+          50:  '#FDF6F0',
+          100: '#F9E8D9',
+          200: '#F3D0B3',
+          300: '#E8B58A',
+          400: '#D4956A',
+          500: '#B87A4D',
+          600: '#9A6340',
+          700: '#7C4D33',
+          800: '#5E3826',
+          900: '#40241A',
         },
-        dark: '#1A1A1A',
-        'dark-card': '#222222',
+        // Clean grays
+        slate: {
+          50:  '#F8FAFC',
+          100: '#F1F5F9',
+          200: '#E2E8F0',
+          300: '#CBD5E1',
+          400: '#94A3B8',
+          500: '#64748B',
+          600: '#475569',
+          700: '#334155',
+          800: '#1E293B',
+          900: '#0F172A',
+        },
+        dark: '#0F2A4A',  // Navy as primary dark
+        'dark-card': '#162F57',
       },
       fontFamily: {
         sans: ['Space Grotesk', 'sans-serif'],
@@ -52,7 +94,9 @@ export default {
       boxShadow: {
         'luxury': '0 20px 60px rgba(0,0,0,0.08)',
         'luxury-lg': '0 40px 100px rgba(0,0,0,0.12)',
-        'gold': '0 4px 20px rgba(232, 146, 10, 0.3)',
+        'gold': '0 4px 20px rgba(212, 149, 106, 0.35)',
+        'copper': '0 4px 20px rgba(212, 149, 106, 0.35)',
+        'navy': '0 4px 20px rgba(15, 42, 74, 0.25)',
       },
       animation: {
         'fade-up': 'fadeUp 0.6s ease forwards',

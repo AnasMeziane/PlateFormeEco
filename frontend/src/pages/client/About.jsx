@@ -19,12 +19,7 @@ export default function About() {
     { icon: Truck,       title: t('about.value4Title'), desc: t('about.value4Desc') },
   ];
 
-  const team = [
-    { name: 'Anas El Amrani',   role: t('about.role1'), img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face' },
-    { name: 'Sara Benali',      role: t('about.role2'), img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop&crop=face' },
-    { name: 'Youssef Tahiri',   role: t('about.role3'), img: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face' },
-  ];
-  return (
+    return (
     <div className="bg-cream">
 
       {/* ── Hero Banner ── */}
@@ -34,7 +29,7 @@ export default function About() {
           <span className="label-pill mb-6 inline-flex">{t('about.badgeStory')}</span>
           <h1 className="text-display-md font-extrabold text-white leading-tight mt-4 mb-6">
             {t('about.heroTitle')}<br />
-            <span className="text-gold-400">{t('about.heroAccent')}</span>
+            <span className="text-copper-400">{t('about.heroAccent')}</span>
           </h1>
           <p className="text-white/50 text-lg max-w-xl leading-relaxed">
             {t('about.heroDesc')}
@@ -81,8 +76,8 @@ export default function About() {
                 className="rounded-3xl shadow-luxury-lg w-full object-cover aspect-[4/3]"
               />
               <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-luxury p-5 flex items-center gap-4">
-                <div className="w-12 h-12 bg-gold-100 rounded-xl flex items-center justify-center shrink-0">
-                  <Star className="w-6 h-6 text-gold-500 fill-gold-400" />
+                <div className="w-12 h-12 bg-copper-100 rounded-xl flex items-center justify-center shrink-0">
+                  <Star className="w-6 h-6 text-copper-500 fill-copper-400" />
                 </div>
                 <div>
                   <p className="font-extrabold text-dark text-lg">4.9 / 5</p>
@@ -121,27 +116,15 @@ export default function About() {
           <div className="text-center mb-14">
             <span className="label-pill mb-4 inline-flex">{t('about.badgeTeam')}</span>
             <h2 className="text-display-sm font-extrabold text-dark mt-4">{t('about.teamTitle')}</h2>
-            <p className="text-dark/40 mt-4 max-w-md mx-auto text-sm leading-relaxed">
-              {t('about.teamDesc')}
-            </p>
           </div>
-          <div className="grid sm:grid-cols-3 gap-8 max-w-3xl mx-auto">
-            {team.map(({ name, role, img }) => (
-              <div key={name} className="text-center group">
-                <div className="relative w-28 h-28 mx-auto mb-4">
-                  <img
-                    src={img}
-                    alt={name}
-                    className="w-full h-full object-cover rounded-2xl shadow-luxury group-hover:shadow-luxury-lg transition-shadow"
-                  />
-                  <div className="absolute -bottom-2 -right-2 w-7 h-7 bg-gold-400 rounded-lg flex items-center justify-center shadow-gold">
-                    <Star className="w-3.5 h-3.5 text-dark fill-dark" />
-                  </div>
-                </div>
-                <p className="font-extrabold text-dark text-base">{name}</p>
-                <p className="text-dark/40 text-sm mt-1 font-medium">{role}</p>
-              </div>
-            ))}
+          {/* Team philosophy section */}
+          <div className="max-w-2xl mx-auto text-center bg-white rounded-3xl p-10 shadow-luxury">
+            <div className="w-16 h-16 bg-copper-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+              <Users className="w-8 h-8 text-copper-500" />
+            </div>
+            <p className="text-dark/60 leading-relaxed text-base">
+              {t('about.teamPhilosophy', 'Chez CHRI LIYA STORE, nous sommes une équipe passionnée et dévouée, unie par notre amour pour la mode et notre engagement envers l\'excellence du service client. Chaque membre de notre équipe contribue à créer une expérience shopping unique et mémorable pour vous.')}
+            </p>
           </div>
         </div>
       </section>
@@ -150,10 +133,10 @@ export default function About() {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <div className="bg-dark rounded-3xl p-12 text-center relative overflow-hidden">
-            <div className="absolute -top-10 -right-10 w-60 h-60 bg-gold-400/10 rounded-full blur-3xl" />
+            <div className="absolute -top-10 -right-10 w-60 h-60 bg-copper-400/10 rounded-full blur-3xl" />
             <div className="absolute -bottom-10 -left-10 w-60 h-60 bg-royal-500/20 rounded-full blur-3xl" />
             <div className="relative z-10">
-              <p className="text-gold-400 font-bold text-sm uppercase tracking-widest mb-4">{t('about.ctaSmall')}</p>
+              <p className="text-copper-400 font-bold text-sm uppercase tracking-widest mb-4">{t('about.ctaSmall')}</p>
               <h2 className="text-4xl font-extrabold text-white mb-6">{t('about.ctaTitle')}</h2>
               <div className="flex flex-wrap gap-4 justify-center">
                 <Link to="/shop" className="btn-primary">{t('about.ctaShop')} <ArrowRight className="w-4 h-4 rtl-flip" /></Link>

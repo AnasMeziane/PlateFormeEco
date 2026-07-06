@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\Admin\ProductController;
 use App\Http\Controllers\Api\Admin\WhatsAppOrderController;
 use App\Http\Controllers\Api\Admin\CustomerController;
 use App\Http\Controllers\Api\Admin\PageController;
+use App\Http\Controllers\Api\SocialLinkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,7 @@ Route::get('/pages/{slug}', [ShopController::class, 'page']);
 Route::post('/contact', [ContactController::class, 'send']);
 Route::post('/whatsapp-order', [WhatsAppController::class, 'submitOrder']);
 Route::get('/site-settings', [SiteSettingController::class, 'index']);
+Route::get('/social-links', [SocialLinkController::class, 'index']);
 
 /*
 |--------------------------------------------------------------------------
@@ -74,5 +76,12 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/pages', [PageController::class, 'index']);
         Route::get('/pages/{page}', [PageController::class, 'show']);
         Route::put('/pages/{page}', [PageController::class, 'update']);
+
+        // Social Links Management
+        Route::get('/social-links', [SocialLinkController::class, 'adminIndex']);
+        Route::put('/social-links/{socialLink}', [SocialLinkController::class, 'update']);
+        Route::put('/social-links', [SocialLinkController::class, 'bulkUpdate']);
+        Route::post('/social-links', [SocialLinkController::class, 'store']);
+        Route::delete('/social-links/{socialLink}', [SocialLinkController::class, 'destroy']);
     });
 });

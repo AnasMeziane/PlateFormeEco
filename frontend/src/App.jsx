@@ -26,6 +26,7 @@ import Orders from './pages/admin/Orders';
 import Customers from './pages/admin/Customers';
 import Pages from './pages/admin/Pages';
 import Settings from './pages/admin/Settings';
+import SocialLinks from './pages/admin/SocialLinks';
 
 function App() {
   return (
@@ -55,6 +56,7 @@ function App() {
             <Route path="orders" element={<Orders />} />
             <Route path="customers" element={<Customers />} />
             <Route path="pages" element={<Pages />} />
+            <Route path="social-links" element={<SocialLinks />} />
             <Route path="settings" element={<Settings />} />
           </Route>
         </Routes>

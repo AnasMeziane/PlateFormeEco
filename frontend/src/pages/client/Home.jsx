@@ -5,24 +5,28 @@ import API from '../../api/axios';
 import ProductCard from '../../components/ProductCard';
 import { ArrowRight, MessageCircle, Star, Zap, Shield, Truck, ChevronLeft, ChevronRight } from 'lucide-react';
 
+// Import local carousel images
+import heroImage1 from '../../assets/images/hero-1.jpg';
+import heroImage2 from '../../assets/images/hero-2.jpg';
+
 const heroSlides = [
+  {
+    url: heroImage1,
+    label: 'Shopping en Ligne',
+    sub:   'Nouveautés chaque semaine',
+  },
+  {
+    url: heroImage2,
+    label: 'Notre Boutique',
+    sub:   'Collection exclusive',
+  },
   {
     url: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=900&h=1100&fit=crop',
     label: 'Mode & Style',
     sub:   'Collections exclusives',
   },
   {
-    url: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=900&h=1100&fit=crop',
-    label: 'Tendances 2025',
-    sub:   'Nouveautés chaque semaine',
-  },
-  {
     url: 'https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=900&h=1100&fit=crop',
-    label: 'Shopping Premium',
-    sub:   'Qualité garantie',
-  },
-  {
-    url: 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=900&h=1100&fit=crop',
     label: 'Livraison Rapide',
     sub:   'Partout au Maroc',
   },
@@ -48,24 +52,24 @@ function HeroCarousel() {
   }, [next]);
 
   return (
-    <div className="hidden lg:flex relative h-full min-h-[88vh] overflow-hidden bg-dark-card">
+    <div className="hidden lg:flex relative h-full min-h-[88vh] overflow-hidden bg-gradient-to-br from-slate-100 to-slate-200">
       {/* Slides */}
       {heroSlides.map((slide, i) => (
         <div
           key={i}
-          className="absolute inset-0 transition-opacity duration-700"
+          className="absolute inset-0 transition-opacity duration-700 flex items-center justify-center"
           style={{ opacity: i === current ? 1 : 0, zIndex: i === current ? 2 : 1 }}
         >
           <img
             src={slide.url}
             alt={slide.label}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-contain"
           />
-          {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-dark/70 via-transparent to-dark/20" />
+          {/* Gradient overlay for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-dark/60 via-transparent to-transparent" />
           {/* Slide label */}
-          <div className="absolute bottom-24 left-8 z-10">
-            <p className="text-gold-400 text-xs font-bold uppercase tracking-widest mb-1">{slide.sub}</p>
+          <div className="absolute bottom-24 left-8 z-10 bg-dark/50 backdrop-blur-sm px-4 py-3 rounded-xl">
+            <p className="text-copper-300 text-xs font-bold uppercase tracking-widest mb-1">{slide.sub}</p>
             <p className="text-white text-2xl font-extrabold">{slide.label}</p>
           </div>
         </div>
@@ -92,7 +96,7 @@ function HeroCarousel() {
             key={i}
             onClick={() => goTo(i)}
             className={`transition-all duration-300 rounded-full ${
-              i === current ? 'w-8 h-2 bg-gold-400' : 'w-2 h-2 bg-white/30 hover:bg-white/60'
+              i === current ? 'w-8 h-2 bg-copper-400' : 'w-2 h-2 bg-white/30 hover:bg-white/60'
             }`}
           />
         ))}
@@ -130,12 +134,12 @@ export default function Home() {
 
             {/* Left — Text */}
             <div className="py-20 lg:py-0 pr-0 lg:pr-16">
-              <div className="inline-flex items-center gap-2 bg-white/10 text-gold-400 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-pill mb-8">
-                <Star className="w-3 h-3 fill-gold-400" /> Collection Premium 2025
+              <div className="inline-flex items-center gap-2 bg-white/10 text-copper-400 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-pill mb-8">
+                <Star className="w-3 h-3 fill-copper-400" /> Collection Exclusive
               </div>
               <h1 className="text-display-lg font-extrabold leading-none tracking-tight mb-6">
                 Le Style<br />
-                <span className="text-gold-400">Redéfini</span><br />
+                <span className="text-copper-400">Redéfini</span><br />
                 Pour Vous.
               </h1>
               <p className="text-white/50 text-lg leading-relaxed max-w-sm mb-10">
@@ -180,7 +184,7 @@ export default function Home() {
             ].map(({ icon: Icon, label, sub }) => (
               <div key={label} className="flex items-center gap-4 py-4 md:py-0 px-0 md:px-8 first:pl-0">
                 <div className="bg-white/10 p-2.5 rounded-xl shrink-0">
-                  <Icon className="w-5 h-5 text-gold-300" />
+                  <Icon className="w-5 h-5 text-copper-300" />
                 </div>
                 <div>
                   <p className="text-white font-bold text-sm">{label}</p>
@@ -282,10 +286,10 @@ export default function Home() {
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <div className="bg-dark rounded-3xl px-10 py-16 md:py-20 flex flex-col md:flex-row items-center justify-between gap-8 overflow-hidden relative">
-            <div className="absolute -right-10 -top-10 w-64 h-64 bg-gold-400/10 rounded-full blur-3xl" />
+            <div className="absolute -right-10 -top-10 w-64 h-64 bg-copper-400/10 rounded-full blur-3xl" />
             <div className="absolute -left-10 -bottom-10 w-64 h-64 bg-royal-500/20 rounded-full blur-3xl" />
             <div className="relative z-10">
-              <p className="text-gold-400 font-bold text-sm uppercase tracking-widest mb-3">Commandez maintenant</p>
+              <p className="text-copper-400 font-bold text-sm uppercase tracking-widest mb-3">Commandez maintenant</p>
               <h2 className="text-4xl md:text-5xl font-extrabold text-white leading-tight">
                 Prêt à Découvrir<br />Votre Style ?
               </h2>

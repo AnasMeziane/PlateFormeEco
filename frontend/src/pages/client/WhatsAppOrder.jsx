@@ -30,6 +30,26 @@ export default function WhatsAppOrder() {
 
   const totalPrice = products.reduce((sum, p) => sum + parseFloat(p.price) * (quantities[p.id] || 1), 0).toFixed(2);
 
+  // Detect iOS device
+  const isIOS = () => {
+    return /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+           (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  };
+
+  // Build WhatsApp URL with proper scheme handling for iOS
+  const buildWhatsAppUrl = (phoneNumber, message) => {
+    const encodedMessage = encodeURIComponent(message);
+    
+    // iOS handles whatsapp:// scheme more reliably for instant opening
+    if (isIOS()) {
+      // Use universal link for iOS - more reliable for immediate opening
+      return `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
+    }
+    
+    // Standard wa.me link for other platforms
+    return `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (products.length === 0) {
@@ -51,8 +71,47 @@ export default function WhatsAppOrder() {
       `🏙️ *Ville:* ${form.city}\n` +
       `📍 *Adresse:* ${form.address || 'Non précisée'}`;
 
+    const whatsappUrl = buildWhatsAppUrl(settings.whatsapp_number, message);
+
+    // iOS-specific optimization: Open WhatsApp FIRST for immediate response
+    // This prevents iOS from blocking the popup due to async delay
+    if (isIOS()) {
+      // On iOS, open WhatsApp immediately before any async operations
+      // This is crucial because iOS Safari blocks popups that aren't
+      // directly triggered by user interaction
+      const whatsappWindow = window.open(whatsappUrl, '_blank');
+      
+      // Fallback: If popup was blocked, use location redirect
+      if (!whatsappWindow || whatsappWindow.closed) {
+        window.location.href = whatsappUrl;
+      }
+
+      // Save order in background (non-blocking)
+      API.post('/whatsapp-order', {
+        full_name: form.full_name,
+        phone_number: form.phone_number,
+        city: form.city,
+        address: form.address,
+        product_ids: products.map(p => p.id),
+        message: message,
+      }).then(() => {
+        toast.success(t('order.successSaved'));
+        if (!isSingleMode) {
+          clearCart();
+        }
+      }).catch((err) => {
+        console.error('Order save error:', err);
+        // Don't show error - WhatsApp already opened successfully
+      }).finally(() => {
+        setSending(false);
+      });
+      
+      return;
+    }
+
+    // Standard flow for non-iOS devices
     try {
-      // Save order to backend
+      // Save order to backend first
       await API.post('/whatsapp-order', {
         full_name: form.full_name,
         phone_number: form.phone_number,
@@ -63,8 +122,7 @@ export default function WhatsAppOrder() {
       });
 
       // Open WhatsApp
-      const url = `https://wa.me/${settings.whatsapp_number}?text=${encodeURIComponent(message)}`;
-      window.open(url, '_blank');
+      window.open(whatsappUrl, '_blank');
       toast.success(t('order.successSaved'));
       
       if (!isSingleMode) {
